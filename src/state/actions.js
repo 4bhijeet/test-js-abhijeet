@@ -45,11 +45,14 @@ function getMoviesWithReleaseYear(movies){
   var moviesWithReleaseYear = [];
   for (var i=0; i<movies.length; i++){
     var movie = movies[i];
-    var releaseYear = moment(movie.releaseDate).year();  //movie.title.substring(movie.title.lastIndexOf("(")+1, movie.title.lastIndexOf(")"))
-    var title = movie.title;
+    var releaseYear;
+    if(movie.releaseDate != '')
+      releaseYear = moment(movie.releaseDate).year();
+    else
+      releaseYear = '';
     if(movie.rating >= 4 && movie.rating <= 5){
       moviesWithReleaseYear.push({
-        'title' : title, 
+        'title' : movie.title, 
         'releaseYear' : releaseYear,  
         'image' : movie.image, 
         'price' : movie.price, 
